@@ -34,14 +34,31 @@ namespace MyStore
             };
             IAmWrap = new WrapPanel() { Orientation = Orientation.Vertical };
 
-            IAmWrap.Children.Add(new TextBlock
+            IAmWrap = add2WrapAndReturnWrap(new TextBlock
             {
                 Text = "Check Out\n-----------",
                 Margin = new Thickness() { Bottom = 10, Left = 10, Top = 10, Right = 10 }
             });
+
             TextBlock textBlock = new TextBlock { Text = "Going to payment options" };
             IAmWrap.Children.Add(textBlock);
             CheckOutPage.Content = IAmWrap;
+        }
+
+        private WrapPanel NewWrapPanel(Orientation orientation)
+        {
+            return new WrapPanel();
+        }
+
+        private WrapPanel add2WrapAndReturnWrap(UIElement _UIobject, WrapPanel basePanel = null)
+        {
+            if (basePanel == null)
+            {
+                basePanel = new WrapPanel();
+            }
+            basePanel.Children.Add(_UIobject);
+
+            return basePanel;
         }
 
         private void SampleSelected(object sender, RoutedEventArgs args)
